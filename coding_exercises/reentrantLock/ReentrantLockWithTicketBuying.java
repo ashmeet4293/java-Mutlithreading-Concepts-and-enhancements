@@ -12,16 +12,18 @@ class Ticket{
 
     public void buyTicket(String personName, int noOfTickets){
 
-        reentrantLock.lock();
-        if(noOfTickets<= totalTickets){
-            totalTickets= totalTickets-noOfTickets;
-            System.out.println("Ticket bought "+ noOfTickets + " by  : "+personName+" Remaining :  "+totalTickets);
+        if(reentrantLock.tryLock()){
+            if(noOfTickets<= totalTickets){
+                totalTickets= totalTickets-noOfTickets;
+                System.out.println("Ticket bought "+ noOfTickets + " by  : "+personName+" Remaining :  "+totalTickets);
 
+            }else{
+                System.out.println("No available tickets for "+ personName +" to buy "+noOfTickets);
+            }
+            reentrantLock.unlock();
         }else{
-            System.out.println("No available tickets for "+ personName +" to buy "+noOfTickets);
+            System.out.println("Ticket instance is acquired by other thread please try again Later :) ");
         }
-        reentrantLock.unlock();
-
     }
 
 }
