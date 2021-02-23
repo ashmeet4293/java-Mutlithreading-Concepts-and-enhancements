@@ -5,7 +5,7 @@ import java.util.concurrent.locks.ReentrantLock;
 /*Reentrant Local is the implementation class of Lock interface which provides support same as synchornized keyword
 * with more flexibility and enhancements
 * - We can accquire same lock for multiple times without any issues.
-* - Internally ReentrantLock threads have personal count which is increased based on the no of invocation of lock() method
+* - Internally ReentrantLockExample threads have personal count which is increased based on the no of invocation of lock() method
 * and vice versa on invocation of unlock() method, Eventually releasing the lock while personal count is 0
 * -It also provides fairness policy i.e. Longest waiting thread will get the lock if it is available (i.e. First Come First Serve)
 * - Default value of fairness is FALSE. */
